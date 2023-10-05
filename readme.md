@@ -38,3 +38,8 @@ We are using a custom Infinispan with a mysql jdbc driver,
 ```
 $ docker build -t custom-infinispan-with-mysql .
 ```
+
+## Build Jar File
+```
+$ mvn clean package -s settings.xml
+```
