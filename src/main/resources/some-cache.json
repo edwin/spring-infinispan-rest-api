@@ -28,7 +28,7 @@
           "embedded-key": true
         },
         "connection-pool": {
-          "connection-url": "jdbc:mysql://192.168.56.1:3306/db_test",
+          "connection-url": "jdbc:mysql://127.0.0.1:3306/db_test",
           "driver": "com.mysql.cj.jdbc.Driver",
           "username": "root",
           "password": "password"
