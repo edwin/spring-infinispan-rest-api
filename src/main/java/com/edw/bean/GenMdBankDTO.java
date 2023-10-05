@@ -71,6 +71,28 @@ public class GenMdBankDTO implements Serializable {
     public GenMdBankDTO() {
     }
 
+    public GenMdBankDTO(String bank_id, String sub_account_code, String sub_description, String fi_bank,
+                        Integer priority, String bank_code, String bank_branch, String bank_account_no,
+                        String bank_account_name, String currency_code, String fi_plafond, Double bank_fee,
+                        String contact_person, String contact_telephone, String email, String record_status) {
+        this.bank_id = bank_id;
+        this.sub_account_code = sub_account_code;
+        this.sub_description = sub_description;
+        this.fi_bank = fi_bank;
+        this.priority = priority;
+        this.bank_code = bank_code;
+        this.bank_branch = bank_branch;
+        this.bank_account_no = bank_account_no;
+        this.bank_account_name = bank_account_name;
+        this.currency_code = currency_code;
+        this.fi_plafond = fi_plafond;
+        this.bank_fee = bank_fee;
+        this.contact_person = contact_person;
+        this.contact_telephone = contact_telephone;
+        this.email = email;
+        this.record_status = record_status;
+    }
+
     public String getBank_id() {
         return bank_id;
     }

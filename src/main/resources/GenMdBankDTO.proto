@@ -1,0 +1,43 @@
+package tgen;
+
+/* @Indexed */
+message GenMdBankDTO {
+	/* @Field(index=Index.YES, store=Store.NO) */
+	required string bank_id = 1;
+
+	optional string sub_account_code = 2;
+
+	optional string sub_description = 3;
+
+	optional string fi_bank = 4;
+
+	optional int32 priority = 5;
+
+	/* @Field(index=Index.YES, store=Store.NO) */
+	optional string bank_code = 6;
+
+	/* @Field(index=Index.YES, store=Store.NO) */
+	optional string bank_branch = 7;
+
+	/* @Field(index=Index.YES, store=Store.NO) */
+	optional string bank_account_no = 8;
+
+	/* @Field(index=Index.YES, store=Store.NO) */
+	optional string bank_account_name = 9;
+
+	/* @Field(index=Index.YES, store=Store.NO) */
+	optional string currency_code = 10;
+
+	optional string fi_plafond = 11;
+
+	optional double bank_fee = 12;
+
+	optional string contact_person = 13;
+
+	optional string contact_telephone = 14;
+
+	optional string email = 15;
+
+	optional string record_status = 16;
+
+}

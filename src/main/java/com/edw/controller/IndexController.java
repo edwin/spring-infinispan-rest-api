@@ -1,6 +1,6 @@
 package com.edw.controller;
 
-import com.edw.bean.User;
+import com.edw.bean.GenMdBankDTO;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +38,31 @@ public class IndexController {
             add(1);
             add(2);
         }});
+    }
+
+    @GetMapping(path = "/add-some-cache")
+    public GenMdBankDTO addSomeCache(@RequestParam String bank_id,
+                                     @RequestParam String sub_account_code,
+                                     @RequestParam String sub_description,
+                                     @RequestParam String fi_bank,
+                                     @RequestParam Integer priority,
+                                     @RequestParam String bank_code,
+                                     @RequestParam String bank_branch,
+                                     @RequestParam String bank_account_no,
+                                     @RequestParam String bank_account_name,
+                                     @RequestParam String currency_code,
+                                     @RequestParam String fi_plafond,
+                                     @RequestParam Double bank_fee,
+                                     @RequestParam String contact_person,
+                                     @RequestParam String contact_telephone,
+                                     @RequestParam String email,
+                                     @RequestParam String record_status) {
+        cacheManager.getCache("some-cache").put(bank_id, new GenMdBankDTO(bank_id,
+                sub_account_code, sub_description, fi_bank,
+                priority, bank_code, bank_branch, bank_account_no,
+                bank_account_name, currency_code, fi_plafond, bank_fee,
+                contact_person, contact_telephone, email, record_status));
+        return (GenMdBankDTO) cacheManager.getCache("some-cache").getOrDefault(bank_id, new GenMdBankDTO());
     }
 
 }
