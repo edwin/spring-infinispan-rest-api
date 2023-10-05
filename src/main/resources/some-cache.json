@@ -1,0 +1,46 @@
+{
+  "distributed-cache": {
+    "mode": "SYNC",
+    "remote-timeout": "17500",
+    "statistics": true,
+    "encoding": {
+      "key": {
+        "media-type": "application/x-protostream"
+      },
+      "value": {
+        "media-type": "application/x-protostream"
+      }
+    },
+    "locking": {
+      "concurrency-level": "1000",
+      "acquire-timeout": "15000",
+      "striping": false
+    },
+    "persistence": {
+      "passivation": false,
+      "table-jdbc-store": {
+        "segmented": false,
+        "dialect": "MYSQL",
+        "table-name": "t_gen",
+        "schema": {
+          "message-name": "GenMdBankDTO",
+          "package": "tgen",
+          "embedded-key": true
+        },
+        "connection-pool": {
+          "connection-url": "jdbc:mysql://192.168.56.1:3306/db_test",
+          "driver": "com.mysql.cj.jdbc.Driver",
+          "username": "root",
+          "password": "password"
+        },
+        "write-behind": {
+          "modification-queue-size": "1024",
+          "fail-silently": false
+        }
+      }
+    },
+    "state-transfer": {
+      "timeout": "60000"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 package com.edw.config;
 
-import com.edw.bean.User;
+import com.edw.bean.GenMdBankDTO;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.marshall.MarshallerUtil;
@@ -33,10 +33,12 @@ public class InfinispanInitializer implements CommandLineRunner {
         String msgSchemaFile = null;
         try {
             ProtoSchemaBuilder protoSchemaBuilder = new ProtoSchemaBuilder();
-            msgSchemaFile = protoSchemaBuilder.fileName("user.proto").packageName("user").addClass(User.class).build(ctx);
-            protoMetadataCache.put("user.proto", msgSchemaFile);
+            protoSchemaBuilder = new ProtoSchemaBuilder();
+            msgSchemaFile = protoSchemaBuilder.fileName("GenMdBankDTO.proto").packageName("tgen").addClass(GenMdBankDTO.class).build(ctx);
+            protoMetadataCache.put("GenMdBankDTO.proto", msgSchemaFile);
+
         } catch (Exception e) {
-            throw new RuntimeException("Failed to build protobuf definition from 'User class'", e);
+            throw new RuntimeException("Failed to build protobuf definition", e);
         }
 
         String errors = protoMetadataCache.get(ProtobufMetadataManagerConstants.ERRORS_KEY_SUFFIX);

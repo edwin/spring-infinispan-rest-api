@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 /**
  * <pre>
@@ -30,15 +32,12 @@ public class IndexController {
         }};
     }
 
-    @GetMapping(path = "/get-user")
-    public User getUsers(@RequestParam String name) {
-        return (User) cacheManager.getCache("user-cache").getOrDefault(name, new User());
-    }
-
-    @GetMapping(path = "/add-user")
-    public User addUsers(@RequestParam String name, @RequestParam Integer age, @RequestParam String address) {
-        cacheManager.getCache("user-cache").put(name, new User(name, age, address));
-        return (User) cacheManager.getCache("user-cache").getOrDefault(name, new User());
+    @GetMapping(path = "/get-some-cache")
+    public Map getSomeCache() {
+        return (Map) cacheManager.getCache("some-cache").getAll(new HashSet<>(){{
+            add(1);
+            add(2);
+        }});
     }
 
 }
