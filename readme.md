@@ -1,4 +1,10 @@
-# Spring and Infinispan Rest API Integration
+# Spring, Infinispan, and MySql Integration
+
+This is a simple implementation for Infinispan and MySql integration, where we are using MySql as persistent cache store. In this sample, Infinispan will load all data from MySql as initial cache, and able to write to database if there is some additional new data added.
+
+```
+https://infinispan.org/docs/stable/titles/configuring/configuring.html#configuring-sql-cache-stores-table_persistence
+```
 
 ## Table Structure
 Using a MySql table
