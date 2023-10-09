@@ -40,18 +40,18 @@ public class GenMdBankDTO implements Serializable {
 
     @ProtoDoc("@Field(index=Index.YES, store=Store.NO)")
     @ProtoField(number = 8)
-    protected String bank_account_no;
+    protected String bank_acct_no;
 
     @ProtoDoc("@Field(index=Index.YES, store=Store.NO)")
     @ProtoField(number = 9)
-    protected String bank_account_name;
+    protected String bank_acct_name;
 
     @ProtoDoc("@Field(index=Index.YES, store=Store.NO)")
     @ProtoField(number = 10)
     protected String currency_code;
 
     @ProtoField(number = 11)
-    protected String fi_plafond;
+    protected Double fi_plafond;
 
     @ProtoField(number = 12)
     protected Double bank_fee;
@@ -72,8 +72,8 @@ public class GenMdBankDTO implements Serializable {
     }
 
     public GenMdBankDTO(String bank_id, String sub_account_code, String sub_description, String fi_bank,
-                        Integer priority, String bank_code, String bank_branch, String bank_account_no,
-                        String bank_account_name, String currency_code, String fi_plafond, Double bank_fee,
+                        Integer priority, String bank_code, String bank_branch, String bank_acct_no,
+                        String bank_acct_name, String currency_code, Double fi_plafond, Double bank_fee,
                         String contact_person, String contact_telephone, String email, String record_status) {
         this.bank_id = bank_id;
         this.sub_account_code = sub_account_code;
@@ -82,8 +82,8 @@ public class GenMdBankDTO implements Serializable {
         this.priority = priority;
         this.bank_code = bank_code;
         this.bank_branch = bank_branch;
-        this.bank_account_no = bank_account_no;
-        this.bank_account_name = bank_account_name;
+        this.bank_acct_no = bank_acct_no;
+        this.bank_acct_name = bank_acct_name;
         this.currency_code = currency_code;
         this.fi_plafond = fi_plafond;
         this.bank_fee = bank_fee;
@@ -149,21 +149,6 @@ public class GenMdBankDTO implements Serializable {
         this.bank_branch = bank_branch;
     }
 
-    public String getBank_account_no() {
-        return bank_account_no;
-    }
-
-    public void setBank_account_no(String bank_account_no) {
-        this.bank_account_no = bank_account_no;
-    }
-
-    public String getBank_account_name() {
-        return bank_account_name;
-    }
-
-    public void setBank_account_name(String bank_account_name) {
-        this.bank_account_name = bank_account_name;
-    }
 
     public String getCurrency_code() {
         return currency_code;
@@ -173,11 +158,11 @@ public class GenMdBankDTO implements Serializable {
         this.currency_code = currency_code;
     }
 
-    public String getFi_plafond() {
+    public Double getFi_plafond() {
         return fi_plafond;
     }
 
-    public void setFi_plafond(String fi_plafond) {
+    public void setFi_plafond(Double fi_plafond) {
         this.fi_plafond = fi_plafond;
     }
 
@@ -219,5 +204,21 @@ public class GenMdBankDTO implements Serializable {
 
     public void setRecord_status(String record_status) {
         this.record_status = record_status;
+    }
+
+    public String getBank_acct_no() {
+        return bank_acct_no;
+    }
+
+    public void setBank_acct_no(String bank_acct_no) {
+        this.bank_acct_no = bank_acct_no;
+    }
+
+    public String getBank_acct_name() {
+        return bank_acct_name;
+    }
+
+    public void setBank_acct_name(String bank_acct_name) {
+        this.bank_acct_name = bank_acct_name;
     }
 }

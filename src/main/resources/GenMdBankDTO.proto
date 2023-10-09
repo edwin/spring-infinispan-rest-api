@@ -20,15 +20,15 @@ message GenMdBankDTO {
 	optional string bank_branch = 7;
 
 	/* @Field(index=Index.YES, store=Store.NO) */
-	optional string bank_account_no = 8;
+	optional string bank_acct_no = 8;
 
 	/* @Field(index=Index.YES, store=Store.NO) */
-	optional string bank_account_name = 9;
+	optional string bank_acct_name = 9;
 
 	/* @Field(index=Index.YES, store=Store.NO) */
 	optional string currency_code = 10;
 
-	optional string fi_plafond = 11;
+	optional double fi_plafond = 11;
 
 	optional double bank_fee = 12;
 
@@ -39,5 +39,4 @@ message GenMdBankDTO {
 	optional string email = 15;
 
 	optional string record_status = 16;
-
 }

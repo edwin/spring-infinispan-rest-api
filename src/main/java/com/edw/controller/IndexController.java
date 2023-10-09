@@ -2,11 +2,14 @@ package com.edw.controller;
 
 import com.edw.bean.GenMdBankDTO;
 import org.infinispan.client.hotrod.RemoteCacheManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,6 +25,8 @@ import java.util.Map;
 @RestController
 public class IndexController {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+
     @Autowired
     private RemoteCacheManager cacheManager;
 
@@ -34,10 +39,15 @@ public class IndexController {
 
     @GetMapping(path = "/get-some-cache")
     public Map getSomeCache() {
-        return (Map) cacheManager.getCache("some-cache").getAll(new HashSet<>(){{
+        Map responseMap = (Map) cacheManager.getCache("some-cache").getAll(new HashSet<>(){{
             add(1);
             add(2);
         }});
+
+        // get fi_plafond
+        logger.info("content of fi_plafond is {}", new BigDecimal(((GenMdBankDTO)responseMap.get(1)).getFi_plafond()));
+
+        return responseMap;
     }
 
     @GetMapping(path = "/add-some-cache")
@@ -51,7 +61,7 @@ public class IndexController {
                                      @RequestParam String bank_account_no,
                                      @RequestParam String bank_account_name,
                                      @RequestParam String currency_code,
-                                     @RequestParam String fi_plafond,
+                                     @RequestParam Double fi_plafond,
                                      @RequestParam Double bank_fee,
                                      @RequestParam String contact_person,
                                      @RequestParam String contact_telephone,

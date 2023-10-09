@@ -20,17 +20,17 @@
       "passivation": false,
       "table-jdbc-store": {
         "segmented": false,
-        "dialect": "MYSQL",
-        "table-name": "t_gen",
+        "dialect": "ORACLE",
+        "table-name": "GEN_MD",
         "schema": {
           "message-name": "GenMdBankDTO",
           "package": "tgen",
           "embedded-key": true
         },
         "connection-pool": {
-          "connection-url": "jdbc:mysql://127.0.0.1:3306/db_test",
-          "driver": "com.mysql.cj.jdbc.Driver",
-          "username": "root",
+          "connection-url": "jdbc:oracle:thin:@//localhost:1521/user",
+          "driver": "oracle.jdbc.OracleDriver",
+          "username": "SYSTEM",
           "password": "password"
         },
         "write-behind": {

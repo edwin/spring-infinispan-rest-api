@@ -1,6 +1,6 @@
 # Spring, Infinispan, and MySql Integration
 
-This is a simple implementation for Infinispan and MySql integration, where we are using MySql as persistent cache store. In this sample, Infinispan will load all data from MySql as initial cache, and able to write to database if there is some additional new data added.
+This is a simple implementation for Infinispan and Database (MySql and Oracle) integration, where we are using Database as persistent cache store. In this sample, Infinispan will load all data from Database as initial cache, and able to write to database if there is some additional new data added.
 
 ```
 https://infinispan.org/docs/stable/titles/configuring/configuring.html#configuring-sql-cache-stores-table_persistence
@@ -39,11 +39,46 @@ INSERT INTO db_test.t_gen (bank_id, sub_account_code, sub_description, fi_bank, 
 INSERT INTO db_test.t_gen (bank_id, sub_account_code, sub_description, fi_bank, priority, bank_code, bank_branch, bank_account_no, bank_account_name, currency_code, fi_plafond, bank_fee, contact_person, contact_telephone, email, record_status) VALUES (2, 'SUB_02', 'DESC_02', 'FIC', 2, 'DOL', 'BRANCH_02', '0002', 'ACCT_002', 'USD', 2000, 15.244310, 'LE', '021524311', 'some@random.com', 'N');
 ```
 
+Using a Oracle table
+```sql
+
+CREATE TABLE "GEN_MD_02"
+(	"BANK_ID" NUMBER(10,0) NOT NULL ENABLE,
+     "SUB_ACCOUNT_CODE" VARCHAR2(16 CHAR) NOT NULL ENABLE,
+     "SUB_DESCRIPTION" VARCHAR2(100 CHAR) NOT NULL ENABLE,
+     "FI_BANK" CHAR(3 CHAR) NOT NULL ENABLE,
+	"PRIORITY" NUMBER(3,0) NOT NULL ENABLE,
+	"BANK_CODE" CHAR(3 CHAR) NOT NULL ENABLE,
+	"BANK_BRANCH" VARCHAR2(100 CHAR) NOT NULL ENABLE,
+	"BANK_ACCT_NO" VARCHAR2(30 CHAR) NOT NULL ENABLE,
+	"BANK_ACCT_NAME" VARCHAR2(100 CHAR) NOT NULL ENABLE,
+	"CURRENCY_CODE" CHAR(3 CHAR) NOT NULL ENABLE,
+	"FI_PLAFOND" NUMBER(16,2),
+	"BANK_FEE" NUMBER(9,6),
+	"CONTACT_PERSON" VARCHAR2(100 CHAR),
+	"CONTACT_TELEPHONE" VARCHAR2(50 CHAR),
+	"EMAIL" VARCHAR2(100 CHAR),
+	"RECORD_STATUS" VARCHAR2(1 CHAR) NOT NULL ENABLE,
+	 CONSTRAINT "GEN_MD_BANK_PK" PRIMARY KEY ("BANK_ID")
+      USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS
+      STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+      PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+      BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+      TABLESPACE "TBS"  ENABLE
+   );
+
+INSERT INTO SYSTEM.GEN_MD_02 (BANK_ID, SUB_ACCOUNT_CODE, SUB_DESCRIPTION, FI_BANK, PRIORITY, BANK_CODE, BANK_BRANCH, BANK_ACCT_NO, BANK_ACCT_NAME, CURRENCY_CODE, FI_PLAFOND, BANK_FEE, CONTACT_PERSON, CONTACT_TELEPHONE, EMAIL, RECORD_STATUS) VALUES (1, 'SUB_01', 'DESC_01', 'FIB', 1, 'BNK', 'BRANCH_01', '00001', 'ACCT_NAME', 'IDR', 100000000000.00, 16.615142, 'CP01', '021817261', 'edwin@redhat.com', 'Y');
+INSERT INTO SYSTEM.GEN_MD_02 (BANK_ID, SUB_ACCOUNT_CODE, SUB_DESCRIPTION, FI_BANK, PRIORITY, BANK_CODE, BANK_BRANCH, BANK_ACCT_NO, BANK_ACCT_NAME, CURRENCY_CODE, FI_PLAFOND, BANK_FEE, CONTACT_PERSON, CONTACT_TELEPHONE, EMAIL, RECORD_STATUS) VALUES (2, 'SUB_02', 'DESC_02', 'FOB', 2, 'ODD', 'BRANCH_02', '00021', 'ACCTN_NM2', 'USD', 150000000000.00, 522.162510, 'PC_02', '0217262615', 'some@ewmail.com', 'Y');
+    
+```
+
 ## Infinispan Image
 We are using a custom Infinispan with a mysql jdbc driver, 
 ```
 $ docker build -t custom-infinispan-with-mysql .
 ```
+
+or use a oracle driver if we are going to connect to an existing Oracle instance.
 
 ## Build Jar File
 ```

@@ -1,15 +1,7 @@
 package com.edw.config;
 
-import org.infinispan.client.hotrod.RemoteCacheManager;
-import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
 import org.infinispan.commons.marshall.ProtoStreamMarshaller;
-import org.infinispan.configuration.cache.CacheMode;
-import org.infinispan.configuration.cache.StorageType;
-import org.infinispan.persistence.jdbc.common.DatabaseType;
-import org.infinispan.persistence.sql.configuration.TableJdbcStoreConfigurationBuilder;
 import org.infinispan.spring.starter.remote.InfinispanRemoteCacheCustomizer;
-import org.infinispan.spring.starter.remote.InfinispanRemoteCacheManagerAutoConfiguration;
-import org.infinispan.util.concurrent.IsolationLevel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
