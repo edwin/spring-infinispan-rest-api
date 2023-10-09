@@ -93,7 +93,7 @@ We can import `GenMdBankDTO.proto` schema into Infinispan server by copying the 
 To create `some-cache` in Infinispan, we can use `create cache` menu and select `add cache configuration`, and copy the content of `some-cache.json` there. 
 ![create cache](image/proto02.png)
 
-## How to Test
+## How to Test using MySql
 Get some data from `some-cache`
 ```
 $ time curl -kv "http://localhost:8080/get-some-cache"
@@ -143,4 +143,31 @@ $ time curl -kv "http://localhost:8080/add-some-cache?bank_id=3&sub_account_code
 real    0m 0.31s
 user    0m 0.03s
 sys     0m 0.06s
+```
+
+## How to Test using Oracle
+```
+ time curl -kv "http://localhost:8080/get-some-cache"
+*   Trying ::1:8080...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 8080 (#0)
+> GET /get-some-cache HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.65.0
+> Accept: */*
+>
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200
+< Content-Type: application/json
+< Transfer-Encoding: chunked
+< Date: Mon, 09 Oct 2023 10:26:14 GMT
+<
+* Connection #0 to host localhost left intact
+{"1":{"bank_id":"1","sub_account_code":"SUB_01","sub_description":"DESC_01","fi_bank":"FIB","priority":1,"bank_code":"BNK","bank_branch":"BRANCH_01","bank_acct_no":"00001","bank_acct_name":"ACCT_NAME","currency_code":"IDR","fi_plafond":1.0E11,"bank_fee":16.615142,"contact_person":"CP01","contact_telephone":"021817261","email":"edwin@redhat.com","record_status":"Y"},"2":{"bank_id":"2","sub_account_code":"SUB_02","sub_description":"DESC_02","fi_bank":"FOB","priority":2,"bank_code":"ODD","bank_branch":"BRANCH_02","bank_acct_no":"00021","bank_acct_name":"ACCTN_NM2","currency_code":"USD","fi_plafond":1.5E11,"bank_fee":522.16251,"contact_person":"PC_02","contact_telephone":"0217262615","email":"some@ewmail.com","record_status":"Y"}}
+
+real    0m 0.14s
+user    0m 0.04s
+sys     0m 0.09s
+
+
 ```
