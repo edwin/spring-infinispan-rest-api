@@ -1,4 +1,4 @@
-# Spring, Infinispan, and MySql Integration
+# Spring, Infinispan, and Database (MySql and Oracle) Integration
 
 This is a simple implementation for Infinispan and Database (MySql and Oracle) integration, where we are using Database as persistent cache store. In this sample, Infinispan will load all data from Database as initial cache, and able to write to database if there is some additional new data added.
 
